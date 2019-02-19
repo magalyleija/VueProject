@@ -94,7 +94,8 @@ export default {
       
     },
     editarTarjeta(index) {
-      
+      this.recetas[2].lsnuevaReceta = nuevaReceta;
+      console.log(nuevaReceta);
     },
     eliminar(index) {
       this.recetas.splice(index, 1);
