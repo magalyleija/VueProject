@@ -13,6 +13,7 @@
         aria-label="Dessert"
         aria-describedby="basic-addon1">
     </div>
+
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">❀</span>
@@ -25,6 +26,7 @@
         aria-label="Username"
         aria-describedby="basic-addon1">
     </div>
+
     <div class="input-group">
       <textarea v-model="nuevaReceta"
         class="form-control"
@@ -32,19 +34,24 @@
         placeholder="Escriba los ingredientes aqui...">
       </textarea>
     </div>
+
     <br>
     <input type="file">
     <hr>
-    
-    <button id="agregar" @click="agregarTodo">Agregar</button>
+    <input  id="inp" type="text">
+    <button id="agregar" @click="agregarTodo">agregar</button>
+    <button id="editar" @click="editarTarjeta" >editar</button>
+    <button id="cancelar" @click="cancelar">cancelar</button>
 <!--<h6>{{nuevoUsuario}}</h6>-->
 <!--<h6>{{nuevoTitulo}}</h6>-->
 <!--<h6>{{nuevaReceta}}</h6>-->
+
     <form class="form-inline">
         <input id="buscar" class="form-control mr-sm-2" type="search" placeholder="Buscar">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
         @click="buscarDatos">Search</button>
-      </form>
+    </form>
+
     <div>
       <div id="card" class="card" style="width: 18rem" v-for="(item,index) of recetas" :key="item.id">
         <img src="@/assets/Miira.jpg" class="card-img-top">
@@ -55,11 +62,12 @@
             class="card-text"
           >{{item.lsnuevaReceta}}</p>
           <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-          <button class="btn-info" @click="editarTarjeta(index)">✓</button>
+          <button id="editarCopy" class="btn-info" @click="editarCopy(0)" >✓</button>
           <button class="btn-danger" @click="eliminar(index)">⌫</button>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -88,20 +96,38 @@ export default {
       this.nuevoTitulo = "";
       this.nuevaReceta = "";
       localStorage.setItem('postres-vue', JSON.stringify(this.recetas));
-      
     },
-    buscarDatos(){
-      
+    buscarDatos(){ },
+
+    editarCopy(index){
+      this.nuevoTitulo  = this.recetas[index].lsnuevoTitulo;
+      this.nuevoUsuario = this.recetas[index].lsnuevoUsuario;
+      this.nuevaReceta  = this.recetas[index].lsnuevaReceta;
+      document.getElementById('inp').value = index;
+      document.getElementById('agregar').style.display = "none";
+      document.getElementById('editar').style.visibility = "visible";
+      document.getElementById('cancelar').style.visibility = "visible";
     },
-    editarTarjeta(index) {
-      this.recetas[2].lsnuevaReceta = nuevaReceta;
-      console.log(nuevaReceta);
+    editarTarjeta(){
+      let index = document.getElementById('inp').value;
+      //let datosNuevos = JSON.parse(localStorage.getItem("postres-vue"));
+      this.recetas[index].lsnuevaReceta = this.nuevaReceta;
+      //console.log(this.recetas);
+      localStorage.setItem('postres-vue', JSON.stringify(this.recetas));
     },
     eliminar(index) {
       this.recetas.splice(index, 1);
       localStorage.setItem('postres-vue', JSON.stringify(this.recetas));
     },
-    
+    cancelar(){
+      localStorage.setItem('postres-vue', JSON.stringify(this.recetas));
+      this.nuevoTitulo = "";
+      this.nuevoUsuario = "";
+      this.nuevaReceta = "";
+      document.getElementById('agregar').style.display = "block";
+      document.getElementById('editar').style.display = "none";
+      document.getElementById('cancelar').style.display = "none";
+    }
   },
   //Proceso LocalStorage
   created: function() {
@@ -147,11 +173,24 @@ export default {
   background: pink;
 }
 #buscar{
-  margin-top: 15px
+  margin-top: 8px
 }
 .card{
   margin: 10px;
   display: block;
+}
+#editar{
+  visibility: hidden
+}
+#cancelar{
+  visibility: hidden
+}
+#agregar{
+  visibility: visible
+}
+#inp{
+  /*visibility: hidden*/
+  display: none
 }
 </style>
 
