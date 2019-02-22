@@ -1,6 +1,5 @@
 <template>
   <div id="Receta">
-
     <div id="sidebar">
       <h3>{{titulo}}</h3>
       <div class="input-group mb-3">
@@ -42,8 +41,7 @@
         ></textarea>
       </div>
 
-      <br>
-      ==============
+      <br>==============
       <hr>
       <input id="inp" type="text">
       <button id="agregar" @click="agregarTodo">agregar</button>
@@ -64,26 +62,25 @@
       </form>
       <div class="container">
         <div class="row">
-            <div
-              id="card"
-              class="card mb-4"
-              style="width: 18rem"
-              v-for="(titulo,index) in busqueda"
-              :key="titulo.id"
-            >
-              <img src="@/assets/Miira.jpg" class="card-img-top">
-              <div class="card-body">
-                <h5 id="NomTit" class="card-title">{{titulo.lsnuevoTitulo}}</h5>
-                <h6 id="NomUss">{{titulo.lsnuevoUsuario}}</h6>
-                <p id="ReceUss" class="card-text">{{titulo.lsnuevaReceta}}</p>
-                <button id="editarCopy" class="btn-info" @click="editarCopy(index)">✓</button>
-                <button id="eliminar" class="btn-danger" @click="eliminar(index)">⌫</button>
-              </div>
+          <div
+            id="card"
+            class="card mb-4"
+            style="width: 18rem"
+            v-for="(titulo,index) in busqueda"
+            :key="titulo.id"
+          >
+            <img src="@/assets/Miira.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5 id="NomTit" class="card-title">{{titulo.lsnuevoTitulo}}</h5>
+              <h6 id="NomUss">{{titulo.lsnuevoUsuario}}</h6>
+              <p id="ReceUss" class="card-text">{{titulo.lsnuevaReceta}}</p>
+              <button id="editarCopy" class="btn-info" @click="editarCopy(index)">✓</button>
+              <button id="eliminar" class="btn-danger" @click="eliminar(index)">⌫</button>
             </div>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -101,33 +98,33 @@ export default {
     };
   },
   methods: {
-    limpiar(){
+    limpiar() {
       this.nuevoUsuario = "";
-      this.nuevoTitulo  = "";
-      this.nuevaReceta  = "";
+      this.nuevoTitulo = "";
+      this.nuevaReceta = "";
     },
-    setLocStor(){
+    setLocStor() {
       localStorage.setItem("postres-vue", JSON.stringify(this.recetas));
     },
-    vistaBotonesDesaparecer(){
-      document.getElementById("agregar").style.display  = "block";
-      document.getElementById("editar").style.visibility   = "hidden";
+    vistaBotonesDesaparecer() {
+      document.getElementById("agregar").style.display = "block";
+      document.getElementById("editar").style.visibility = "hidden";
       document.getElementById("cancelar").style.visibility = "hidden";
     },
-    vistaBotonesAparecer(){
+    vistaBotonesAparecer() {
       document.getElementById("agregar").style.display = "none";
       document.getElementById("editar").style.visibility = "visible";
       document.getElementById("cancelar").style.visibility = "visible";
     },
-    ussaJson(index){
-      this.nuevoTitulo  = this.recetas[index].lsnuevoTitulo;
+    jsonaUss(index) {
+      this.nuevoTitulo = this.recetas[index].lsnuevoTitulo;
       this.nuevoUsuario = this.recetas[index].lsnuevoUsuario;
-      this.nuevaReceta  = this.recetas[index].lsnuevaReceta;
+      this.nuevaReceta = this.recetas[index].lsnuevaReceta;
     },
-    jsonaUss(index){
-      this.recetas[index].lsnuevoTitulo  = this.nuevoTitulo;
+    ussaJson(index) {
+      this.recetas[index].lsnuevoTitulo = this.nuevoTitulo;
       this.recetas[index].lsnuevoUsuario = this.nuevoUsuario;
-      this.recetas[index].lsnuevaReceta  = this.nuevaReceta;
+      this.recetas[index].lsnuevaReceta = this.nuevaReceta;
     },
     agregarTodo() {
       this.recetas.push({
@@ -140,14 +137,14 @@ export default {
       this.setLocStor();
     },
     editarCopy(index) {
-      this.ussaJson(index);
+      this.jsonaUss(index);
       document.getElementById("inp").value = index;
       this.vistaBotonesAparecer();
     },
     editarTarjeta() {
       let index = document.getElementById("inp").value;
       //let datosNuevos = JSON.parse(localStorage.getItem("postres-vue"));
-      this.jsonaUss(index);
+      this.ussaJson(index);
       this.vistaBotonesDesaparecer();
       this.limpiar();
       this.setLocStor();
@@ -182,7 +179,7 @@ export default {
 </script>
 
 <style scoped>
-h3{
+h3 {
   color: white;
 }
 #Receta {
@@ -200,7 +197,7 @@ h3{
   padding-left: 8px;
   padding-right: 8px;
 }
-#buscar{
+#buscar {
   width: 100%;
   margin-left: 10px;
 }
@@ -212,14 +209,14 @@ h3{
   min-height: calc(100vh - 70px);
 }
 #recipes .row {
-justify-content: center;
+  justify-content: center;
 }
 
 .card {
   margin: 10px;
   margin-top: 20px;
   display: block;
-  background: #FDF5BF;
+  background: #fdf5bf;
 }
 #editar {
   background: rgb(223, 221, 221);
@@ -232,15 +229,15 @@ justify-content: center;
   border-radius: 8px;
   visibility: hidden;
 }
-#editarCopy{
+#editarCopy {
   background: rgb(255, 211, 215);
   color: gray;
   border-color: rgb(255, 211, 215);
   margin-right: 5px;
   border-radius: 15px;
 }
-#eliminar{
-  background: #DB2955;
+#eliminar {
+  background: #db2955;
   border-radius: 15px;
 }
 #agregar {
