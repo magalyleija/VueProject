@@ -1,23 +1,27 @@
 <template>
   <div id="app">
-    <div id="nav">
       <Navbar></Navbar>
       <AgregaRece></AgregaRece>
-      
+      <Footer></Footer>
     </div>
-  </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
 import AgregaRece from "./components/AgregaRece.vue";
-//import PlanTar from "./components/PlanTar.vue";
+import Sidebar from "./components/Sidebar.vue";
+import Recipes from "./components/Recipes.vue";
+import Footer from "./components/Footer.vue";
+
 
 export default {
   name: "app",
   components: {
     Navbar,
-    AgregaRece
+    Sidebar,
+    Recipes,
+    AgregaRece,
+    Footer
   }
 };
 </script>
