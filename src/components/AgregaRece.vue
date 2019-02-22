@@ -179,9 +179,7 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  color: white;
-}
+
 #Receta {
   background: pink;
   margin-top: 70px;
@@ -219,13 +217,15 @@ h3 {
   background: #fdf5bf;
 }
 #editar {
-  background: rgb(223, 221, 221);
+  background: rgb(210, 68, 141);
+  color: white;
   margin-right: 6px;
   border-radius: 8px;
   visibility: hidden;
 }
 #cancelar {
-  background: rgb(223, 221, 221);
+  background: rgb(210, 68, 141);
+  color: white;
   border-radius: 8px;
   visibility: hidden;
 }
@@ -241,7 +241,8 @@ h3 {
   border-radius: 15px;
 }
 #agregar {
-  background: rgb(223, 221, 221);
+  color: white;
+  background: rgb(210, 68, 141);
   border-radius: 8px;
   visibility: visible;
 }
