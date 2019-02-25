@@ -8,7 +8,6 @@
         </div>
         <input
           v-model="nuevoTitulo"
-          v-on:keyup.enter="agregarTitulo"
           type="text"
           class="form-control"
           placeholder="Nombre del Postre..."
@@ -23,7 +22,6 @@
         </div>
         <input
           v-model="nuevoUsuario"
-          v-on:keyup.enter="agregarUsuario"
           type="text"
           class="form-control"
           placeholder="Ingrese su nombre..."
@@ -43,9 +41,9 @@
 
       <br>==============
       <hr>
-      <input id="inp" type="text">
-      <button id="agregar" @click="agregarTodo">agregar</button>
-      <button id="editar" @click="editarTarjeta">editar</button>
+      <input  id="inp" type="text">
+      <button id="agregar"  @click="agregarTodo">agregar</button>
+      <button id="editar"   @click="editarTarjeta">editar</button>
       <button id="cancelar" @click="cancelar">cancelar</button>
     </div>
 
@@ -117,14 +115,14 @@ export default {
       document.getElementById("cancelar").style.visibility = "visible";
     },
     jsonaUss(index) {
-      this.nuevoTitulo = this.recetas[index].lsnuevoTitulo;
+      this.nuevoTitulo  = this.recetas[index].lsnuevoTitulo;
       this.nuevoUsuario = this.recetas[index].lsnuevoUsuario;
-      this.nuevaReceta = this.recetas[index].lsnuevaReceta;
+      this.nuevaReceta  = this.recetas[index].lsnuevaReceta;
     },
     ussaJson(index) {
-      this.recetas[index].lsnuevoTitulo = this.nuevoTitulo;
-      this.recetas[index].lsnuevoUsuario = this.nuevoUsuario;
-      this.recetas[index].lsnuevaReceta = this.nuevaReceta;
+      this.recetas[index].lsnuevoTitulo   = this.nuevoTitulo;
+      this.recetas[index].lsnuevoUsuario  = this.nuevoUsuario;
+      this.recetas[index].lsnuevaReceta   = this.nuevaReceta;
     },
     agregarTodo() {
       this.recetas.push({
@@ -175,7 +173,7 @@ export default {
       this.recetas = datosDB;
     }
   }
-};
+}
 </script>
 
 <style scoped>
